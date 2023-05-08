@@ -64,6 +64,7 @@ export const ProductInput = styled.input`
 border: 1px solid black;
 width: 100%;
 height: 40px;
+border-color: ${({ error }) => (error === "true" ? "red" : "black")};
 `;
 export const Productlabel = styled.label`
 display: block;
@@ -78,7 +79,6 @@ export const ProductTypeDive = styled.div`
 width: 100%;
 `;
 
-
 export const ProductSelect = styled.select`
 border: 1px solid black;
 width: 100%;
@@ -90,4 +90,11 @@ export const ProductOptions = styled.option`
 border: 1px solid black;
 width: 100%;
 height: 40px;
+`;
+
+export const ProductError = styled.p`
+font-size: 15px;
+color: red;
+margin-bottom: 1px;
+text-align: center;
 `;

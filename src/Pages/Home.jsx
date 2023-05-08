@@ -22,7 +22,7 @@ const Home = () => {
       <ProductDiv>
         <ProductBox>
           <CheckBox 
-            onClick={handleCheckboxChange(15)} />
+            onClick={handleCheckboxChange(15)} className='delete-checkbox' />
           <ProductDetailsBox>
             <ProductDetails>Very good father</ProductDetails>
             <ProductDetails>Very good father</ProductDetails>
@@ -32,7 +32,7 @@ const Home = () => {
         </ProductBox>
         <ProductBox>
           <CheckBox 
-            onClick={handleCheckboxChange(16)} />
+            onClick={handleCheckboxChange(16)} className='delete-checkbox'/>
           <ProductDetailsBox>
             <ProductDetails>Very good father</ProductDetails>
             <ProductDetails>Very good father</ProductDetails>
