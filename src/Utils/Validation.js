@@ -1,87 +1,118 @@
-const errors = {}
-export const  DVDvalidator = (value) =>{
-    if(value.sku === ''){
+
+const string_pattern = /^[a-zA-Z\s]+$/;
+const numeric_pattern = /^\d+$/;
+export const  DVDvalidator = (values) =>{
+    const errors = {}
+    if(values.sku === ''){
         errors.sku = 'SKU is required'
     }
-
-    if (value.name === '') {
+    if (values.name === '') {
         errors.name = 'Name is required'
+    }else if(!string_pattern.test(values.name)){
+        errors.name = 'Product name must be an alphabet'
     }
 
-    if (value.price === '') {
+    if (values.price === '') {
         errors.price = 'Price is required'
+    }else if(!numeric_pattern.test(values.price)){
+        errors.price = 'Product price must be a number'
     }
 
-    if (value.size === '') {
+    if (values.size === '') {
         errors.size = 'Size is required'
+    }else if(!numeric_pattern.test(values.size)){
+        errors.size = 'Product size must be a number'
     }
 
     return errors;
 }  
 
-export const  Furniturevalidator = (value) =>{
-    if(value.sku === ''){
+export const  Furniturevalidator = (values) =>{
+    const errors = {}
+    if(values.sku === ''){
         errors.sku = 'SKU is required'
     }
 
-    if (value.name === '') {
+    if (values.name === '') {
         errors.name = 'Name is required'
+    }else if(!string_pattern.test(values.name)){
+        errors.name = 'Product name must be an alphabet'
     }
 
-    if (value.price === '') {
+    if (values.price === '') {
         errors.price = 'Price is required'
+    }else if(!numeric_pattern.test(values.price)){
+        errors.price = 'Product price must be a number'
     }
 
-    if (value.height === '') {
+    if (values.height === '') {
         errors.height = 'Height is required'
+    }else if(!numeric_pattern.test(values.height)){
+        errors.height = 'Product height must be a number'
     }
 
-    if (value.width === '') {
+    if (values.width === '') {
         errors.width = 'Width is required'
+    }else if(!numeric_pattern.test(values.width)){
+        errors.width = 'Product width must be a number'
     }
 
-    if (value.length === '') {
+    if (values.length === '') {
         errors.length = 'Length is required'
+    }else if(!numeric_pattern.test(values.length)){
+        errors.length = 'Product length must be a number'
     }
 
     return errors;
 } 
 
-export const  Bookvalidator = (value) =>{
-    if(value.sku === ''){
+export const  Bookvalidator = (values) =>{
+    const errors = {}
+    if(values.sku === ''){
         errors.sku = 'SKU is required'
     }
 
-    if (value.name === '') {
+    if (values.name === '') {
         errors.name = 'Name is required'
+    }else if(!string_pattern.test(values.name)){
+        errors.name = 'Product name must be an alphabet'
     }
 
-    if (value.price === '') {
+    if (values.price === '') {
         errors.price = 'Price is required'
+    }else if(!numeric_pattern.test(values.price)){
+        errors.price = 'Product price must be a number'
     }
 
-    if (value.weight === '') {
+    if (values.weight === '') {
         errors.weight = 'Weight is required'
+    }else if(!numeric_pattern.test(values.weight)){
+        errors.weight = 'Product weight must be a number'
     }
 
     return errors;
 }
 
-export const  ProductTypevalidator = (value) =>{
-    if(value.productType === ''){
+export const  ProductTypevalidator = (values) =>{
+    const errors = {}
+    if(values.productType === ''){
         errors.productType = 'Please select Product type'
     }
 
-    if(value.sku === ''){
+    if(values.sku === ''){
         errors.sku = 'SKU is required'
     }
 
-    if (value.name === '') {
+    if (values.name === '') {
         errors.name = 'Name is required'
+    }else if(!string_pattern.test(values.name)){
+        errors.name = 'Product name must be an alphabet'
     }
 
-    if (value.price === '') {
+    if (values.price === '') {
         errors.price = 'Price is required'
+    }else if(!numeric_pattern.test(values.price)){
+        errors.price = 'Product price must be a number'
     }
 
     return errors;
