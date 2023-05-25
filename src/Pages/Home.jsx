@@ -46,7 +46,7 @@ const Home = () => {
 
     axios.post(url, data)
     .then((response) => {
-      if (response.data.status == true) {
+      if (response.data.status === true) {
         fetchProduct();
       }
     })
