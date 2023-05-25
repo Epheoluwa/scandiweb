@@ -56,8 +56,10 @@ const AddProduct = () => {
     } else {
       // Validation passed, submit the form
       const data = new FormData(e.currentTarget);
+      // const url = "http://localhost/phpcrudapi/api/create.php";
+      const url = "https://zipagro.a10staffing.com/api/create.php";
       axios
-        .post("http://localhost/phpcrudapi/api/create.php", data, {
+        .post(url, data, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -91,7 +93,7 @@ const AddProduct = () => {
           <HeadDiv>
             <Head>Product Add</Head>
             <ButtonDiv>
-              <Button>Save</Button>
+              <Button type='submit'>Save</Button>
               <ButtonLink to='/'>Cancel</ButtonLink>
             </ButtonDiv>
           </HeadDiv>

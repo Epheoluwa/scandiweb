@@ -9,10 +9,12 @@ const Home = () => {
   const [product, setProduct] = useState([]);
 
   const fetchProduct = async () => {
-    const url = 'http://localhost/phpcrudapi/api/getproduct.php';
+    // const url = 'http://localhost/phpcrudapi/api/getproduct.php';
+    const url = 'https://zipagro.a10staffing.com/api/getproduct.php';
     await axios
       .get(url)
       .then((res) => {
+        console.log(res);
         let product = res.data;
         setProduct(product);
       })
@@ -40,7 +42,8 @@ const Home = () => {
     const data = {
       'id': checkedIds
     }
-    const url = 'http://localhost/phpcrudapi/api/delete.php';
+    // const url = 'http://localhost/phpcrudapi/api/delete.php';
+    const url = 'https://zipagro.a10staffing.com/api/delete.php';
 
     axios.post(url, data)
     .then((response) => {
@@ -67,36 +70,42 @@ const Home = () => {
         </ButtonDiv>
       </HeadDiv>
       <ProductDiv>
-        {product.map((item) => {
-          return (
-            // <ProductItemText key={item.id}>
-            //   {item.name}
-            // </ProductItemText>
-            <ProductBox key={item.id}>
-              <CheckBox
-                onChange={() => handleCheckboxChange(item.id)}
-                checked={item.checked || false}
-                className='delete-checkbox' />
-              <ProductDetailsBox>
-                <ProductDetails>{item.sku}</ProductDetails>
-                <ProductDetails>{item.name}</ProductDetails>
-                <ProductDetails>{item.price}.00 $</ProductDetails>
-                {
-                  item.product_type == 'dvd' &&
-                  <ProductDetails>Size: {item.size} MB</ProductDetails>
-                }
-                {
-                  item.product_type == 'book' &&
-                  <ProductDetails>Weight: {item.weight} KG</ProductDetails>
-                }
-                {
-                  item.product_type == 'furniture' &&
-                  <ProductDetails>Dimension: {item.height}x{item.width}x{item.length}</ProductDetails>
-                }
-              </ProductDetailsBox>
-            </ProductBox>
-          );
-        })}
+        {
+          product && 
+
+          product.map((item) => {
+            return (
+              // <ProductItemText key={item.id}>
+              //   {item.name}
+              // </ProductItemText>
+              <ProductBox key={item.id}>
+                <CheckBox
+                  onChange={() => handleCheckboxChange(item.id)}
+                  checked={item.checked || false}
+                  className='delete-checkbox' />
+                <ProductDetailsBox>
+                  <ProductDetails>{item.sku}</ProductDetails>
+                  <ProductDetails>{item.name}</ProductDetails>
+                  <ProductDetails>{item.price}.00 $</ProductDetails>
+                  {
+                    item.product_type == 'dvd' &&
+                    <ProductDetails>Size: {item.size} MB</ProductDetails>
+                  }
+                  {
+                    item.product_type == 'book' &&
+                    <ProductDetails>Weight: {item.weight} KG</ProductDetails>
+                  }
+                  {
+                    item.product_type == 'furniture' &&
+                    <ProductDetails>Dimension: {item.height}x{item.width}x{item.length}</ProductDetails>
+                  }
+                </ProductDetailsBox>
+              </ProductBox>
+            );
+          })
+
+        }
+        {}
       </ProductDiv>
       <Footer />
     </SectionBody>
