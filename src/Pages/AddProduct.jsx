@@ -56,10 +56,6 @@ const AddProduct = () => {
     } else {
       // Validation passed, submit the form
       const data = new FormData(e.currentTarget);
-      data.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
-      });
-
       axios
         .post("http://localhost/phpcrudapi/api/create.php", data, {
           headers: {
