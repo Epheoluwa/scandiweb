@@ -5,7 +5,6 @@ import { CheckBox, MassDeleteButton, ProductBox, ProductDetails, ProductDetailsB
 import axios from 'axios';
 
 const Home = () => {
-  const [isChecked, setIsChecked] = useState(false);
   const [product, setProduct] = useState([]);
 
   const fetchProduct = async () => {
@@ -88,15 +87,15 @@ const Home = () => {
                   <ProductDetails>{item.name}</ProductDetails>
                   <ProductDetails>{item.price}.00 $</ProductDetails>
                   {
-                    item.product_type == 'dvd' &&
+                    item.product_type === 'dvd' &&
                     <ProductDetails>Size: {item.size} MB</ProductDetails>
                   }
                   {
-                    item.product_type == 'book' &&
+                    item.product_type === 'book' &&
                     <ProductDetails>Weight: {item.weight} KG</ProductDetails>
                   }
                   {
-                    item.product_type == 'furniture' &&
+                    item.product_type === 'furniture' &&
                     <ProductDetails>Dimension: {item.height}x{item.width}x{item.length}</ProductDetails>
                   }
                 </ProductDetailsBox>

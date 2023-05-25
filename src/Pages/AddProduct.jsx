@@ -66,7 +66,7 @@ const AddProduct = () => {
         })
         .then((res) => {
      
-          if (res.data.status == true) {
+          if (res.data.status === true) {
             navigate('/');
           }else{
             setError({
