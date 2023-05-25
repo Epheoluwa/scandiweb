@@ -38,8 +38,20 @@ font-size: 1rem;
 cursor: pointer;
 `;
 export const ButtonLink = styled(Link)`
+display: inline-block;
+border: 1px solid black;
+width: 100px;
+height: 40px;
+font-size: 1rem;
+text-align: center;
 text-decoration: none;
+line-height: 40px;
+cursor: pointer;
 color: black;
+
+&:hover {
+  background-color: lightgray;
+}
 `;
 
 export const FormContainer = styled.div`

@@ -3,6 +3,9 @@ import { Button, ButtonDiv, ButtonLink, FormContainer, FormContainer2, FormInput
 import Footer from '../Components/Footer'
 import { Bookvalidator, DVDvalidator, Furniturevalidator, ProductTypevalidator } from '../Utils/Validation';
 import { useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const AddProduct = () => {
   const [productType, setProductType] = useState('');
@@ -20,6 +23,8 @@ const AddProduct = () => {
 
   const [error, setError] = useState({});
 
+  const navigate = useNavigate();
+
   let handleTypeChange = (e) => {
     setProductType(e.target.value);
   };
@@ -31,27 +36,19 @@ const AddProduct = () => {
 
   const validateForm = () => {
     let validationError = null;
-    productType === 'DVD'
-      ? validationError =  DVDvalidator(values)
-      : productType === 'Furniture'
-        ? validationError =  Furniturevalidator(values)
-        : productType === 'Book'
-          ? validationError =  Bookvalidator(values)
-          : validationError =  ProductTypevalidator(values);
+    productType === 'dvd'
+      ? validationError = DVDvalidator(values)
+      : productType === 'furniture'
+        ? validationError = Furniturevalidator(values)
+        : productType === 'book'
+          ? validationError = Bookvalidator(values)
+          : validationError = ProductTypevalidator(values);
 
     return validationError;
   }
 
   const HandleFormSubmit = (e) => {
     e.preventDefault();
-    // productType === 'DVD'
-    //   ? setError(DVDvalidator(values))
-    //   : productType === 'Furniture'
-    //     ? setError(Furniturevalidator(values))
-    //     : productType === 'Book'
-    //       ? setError(Bookvalidator(values))
-    //       : setError(ProductTypevalidator(values));
-
     const validationError = validateForm();
     if (Object.keys(validationError).length > 0) {
       // Show error messages to the user
@@ -62,7 +59,28 @@ const AddProduct = () => {
       data.forEach((value, key) => {
         console.log(`${key}: ${value}`);
       });
-  
+
+      axios
+        .post("http://localhost/phpcrudapi/api/create.php", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+     
+          if (res.data.status == true) {
+            navigate('/');
+          }else{
+            setError({
+              sku: "SKU must be unique",
+            })
+          }
+          
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+
     }
 
 
@@ -78,7 +96,7 @@ const AddProduct = () => {
             <Head>Product Add</Head>
             <ButtonDiv>
               <Button>Save</Button>
-              <Button> <ButtonLink to='/'>Cancel</ButtonLink> </Button>
+              <ButtonLink to='/'>Cancel</ButtonLink>
             </ButtonDiv>
           </HeadDiv>
 
@@ -113,16 +131,16 @@ const AddProduct = () => {
                 <ProductTypeDive>
                   <ProductSelect id='productType' name='productType' onChange={handleTypeChange} >
                     <ProductOptions> </ProductOptions>
-                    <ProductOptions id='DVD' value='DVD'>DVD</ProductOptions>
-                    <ProductOptions id='Furniture' value='Furniture'>Furniture</ProductOptions>
-                    <ProductOptions id='Book' value='Book'>Book</ProductOptions>
+                    <ProductOptions id='dvd' value='dvd'>DVD</ProductOptions>
+                    <ProductOptions id='book' value='book'>Book</ProductOptions>
+                    <ProductOptions id='furniture' value='furniture'>Furniture</ProductOptions>
                   </ProductSelect>
                   {error.productType && <ProductError>{error.productType}</ProductError>}
                 </ProductTypeDive>
               </FormInputContainer>
 
               {
-                productType === 'DVD' &&
+                productType === 'dvd' &&
                 <FormInputContainer>
                   <Productlabel>Size(MB)</Productlabel>
                   <ProductTypeDive>
@@ -134,7 +152,7 @@ const AddProduct = () => {
               }
 
               {
-                productType === 'Furniture' &&
+                productType === 'furniture' &&
                 <>
                   <FormInputContainer>
                     <Productlabel>Height(CM)</Productlabel>
@@ -162,7 +180,7 @@ const AddProduct = () => {
               }
 
               {
-                productType === 'Book' &&
+                productType === 'book' &&
                 <FormInputContainer>
                   <Productlabel>Weight(KG)</Productlabel>
                   <ProductTypeDive>

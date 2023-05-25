@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, ButtonDiv, ButtonLink, Head, HeadDiv, SectionBody } from '../styled-component/addproduct'
+import { ButtonDiv, ButtonLink, Head, HeadDiv, SectionBody } from '../styled-component/addproduct'
 import Footer from '../Components/Footer'
 import { CheckBox, MassDeleteButton, ProductBox, ProductDetails, ProductDetailsBox, ProductDiv } from '../styled-component/Home'
 
@@ -15,7 +15,7 @@ const Home = () => {
       <HeadDiv>
         <Head>Product List</Head>
         <ButtonDiv>
-          <Button><ButtonLink to='addproduct'>ADD</ButtonLink></Button>
+          <ButtonLink to='addproduct'>ADD</ButtonLink>
           <MassDeleteButton id='delete-product-btn'>MASS DELETE</MassDeleteButton>
         </ButtonDiv>
       </HeadDiv>
