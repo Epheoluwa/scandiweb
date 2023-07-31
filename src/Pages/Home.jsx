@@ -70,7 +70,7 @@ const Home = () => {
       </HeadDiv>
       <ProductDiv>
         {
-          product && 
+          product ?
 
           product.map((item) => {
             return (
@@ -88,20 +88,21 @@ const Home = () => {
                   <ProductDetails>{item.price}.00 $</ProductDetails>
                   {
                     item.product_type === 'dvd' &&
-                    <ProductDetails>Size: {item.size} MB</ProductDetails>
+                    <ProductDetails>Size: {item.attribute}</ProductDetails>
                   }
                   {
                     item.product_type === 'book' &&
-                    <ProductDetails>Weight: {item.weight} KG</ProductDetails>
+                    <ProductDetails>Weight: {item.attribute}</ProductDetails>
                   }
                   {
                     item.product_type === 'furniture' &&
-                    <ProductDetails>Dimension: {item.height}x{item.width}x{item.length}</ProductDetails>
+                    <ProductDetails>Dimension: {item.attribute}</ProductDetails>
                   }
                 </ProductDetailsBox>
               </ProductBox>
             );
           })
+          : null
 
         }
         {}
